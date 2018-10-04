@@ -31,9 +31,6 @@ create table public.project_spec
 )
 ;
 
-alter table public.project_spec owner to boomicrm
-;
-
 create table public.project_spec_crossref
 (
 	crossref bigserial not null
@@ -46,9 +43,6 @@ create table public.project_spec_crossref
 	other3 varchar,
 	phase integer
 )
-;
-
-alter table public.project_spec_crossref owner to boomicrm
 ;
 
 create table public.project_task
@@ -72,8 +66,5 @@ create table public.project_task
 	other3 varchar,
 	is_complete integer default 0
 )
-;
-
-alter table public.project_task owner to boomicrm
 ;
 
