@@ -1,0 +1,15 @@
+<Envelope>
+  <Body>
+    <CreateRequest>
+      <address>John Galt</address>
+      <device>Latitude Notebook</device>
+      <justification>New Hire Hardware Request for Jones, Mike. Hiring Manager: Frank Jones HM Phone: 9703180975 HM Email: chriscappetta@boomi.com. Dashboard ref #: 262</justification>
+      <location_type>Chesterbrook, PA</location_type>
+      <requested_for>876456</requested_for>
+      <contact_number>9703180975</contact_number>
+      <headset>None</headset>
+      <bundle>System and Monitor</bundle>
+      <country>US</country>
+    </CreateRequest>
+  </Body>
+</Envelope>
