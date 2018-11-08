@@ -1,0 +1,48 @@
+{
+  "Input1Character": "Input1 Character Entry in INTEGRATE profile/ String Value in Flow",
+  "Input2Number": 47,
+  "Input3DateTime": "2018-11-08T23:01:33.795Z",
+  "Input4Boolean": true,
+  "Input5Object": {
+    "ObjectProperty1Character": "Object Input Character Property",
+    "ObjectProperty2Number": 47,
+    "ObjectProperty3DateTime": "2018-11-22T10:27:00.000Z",
+    "ObjectProperty4Boolean": null,
+    "ObjectProperty5NestedObject": {
+      "NestedObjectProperty1": "Hello",
+      "NestedObjectProperty2": "World"
+    },
+    "ObjectProperty6NestedList": [
+      {
+        "ObjectProperty6NestedListProp1": "Hello",
+        "ObjectProperty6NestedListProp2": "World1"
+      },
+      {
+        "ObjectProperty6NestedListProp1": "Hello",
+        "ObjectProperty6NestedListProp2": "World2"
+      }
+    ]
+  },
+  "Input6List": [
+    {
+      "ListProperty1Character": "Character",
+      "ListProperty2Number": 73,
+      "ListProperty4Boolean": true,
+      "ListProperty5NestedObject": {
+        "ListNestedObjectProp1": "Hello1",
+        "ListNestedObjectProp2": "World1"
+      },
+      "ListProperty6NestedList": null
+    },
+    {
+      "ListProperty1Character": "Character2",
+      "ListProperty2Number": 147,
+      "ListProperty4Boolean": null,
+      "ListProperty5NestedObject": {
+        "ListNestedObjectProp1": "Hi",
+        "ListNestedObjectProp2": "Hi"
+      },
+      "ListProperty6NestedList": null
+    }
+  ]
+}
