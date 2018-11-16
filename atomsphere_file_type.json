@@ -1,0 +1,102 @@
+{
+    "bindings": null,
+    "dateCreated": "2018-11-16T20:25:02.9770864+00:00",
+    "dateModified": "2018-11-16T20:28:09.2387382+00:00",
+    "developerName": "$File RESPONSE - Object",
+    "developerSummary": "",
+    "elementType": "TYPE",
+    "id": "",
+    "properties": [
+        {
+            "contentFormat": "",
+            "contentType": "ContentDateTime",
+            "developerName": "Date Created",
+            "id": "",
+            "typeElementDeveloperName": null,
+            "typeElementId": null
+        },
+        {
+            "contentFormat": "",
+            "contentType": "ContentDateTime",
+            "developerName": "Date Modified",
+            "id": "",
+            "typeElementDeveloperName": null,
+            "typeElementId": null
+        },
+        {
+            "contentFormat": "",
+            "contentType": "ContentString",
+            "developerName": "Description",
+            "id": "",
+            "typeElementDeveloperName": null,
+            "typeElementId": null
+        },
+        {
+            "contentFormat": "",
+            "contentType": "ContentString",
+            "developerName": "Download Uri",
+            "id": "",
+            "typeElementDeveloperName": null,
+            "typeElementId": null
+        },
+        {
+            "contentFormat": "",
+            "contentType": "ContentString",
+            "developerName": "Embed Uri",
+            "id": "",
+            "typeElementDeveloperName": null,
+            "typeElementId": null
+        },
+        {
+            "contentFormat": "",
+            "contentType": "ContentString",
+            "developerName": "Icon Uri",
+            "id": "",
+            "typeElementDeveloperName": null,
+            "typeElementId": null
+        },
+        {
+            "contentFormat": "",
+            "contentType": "ContentString",
+            "developerName": "Id",
+            "id": "",
+            "typeElementDeveloperName": null,
+            "typeElementId": null
+        },
+        {
+            "contentFormat": "",
+            "contentType": "ContentString",
+            "developerName": "Kind",
+            "id": "",
+            "typeElementDeveloperName": null,
+            "typeElementId": null
+        },
+        {
+            "contentFormat": "",
+            "contentType": "ContentString",
+            "developerName": "Mime Type",
+            "id": "",
+            "typeElementDeveloperName": null,
+            "typeElementId": null
+        },
+        {
+            "contentFormat": "",
+            "contentType": "ContentString",
+            "developerName": "Name",
+            "id": "",
+            "typeElementDeveloperName": null,
+            "typeElementId": null
+        },
+        {
+            "contentFormat": "",
+            "contentType": "ContentString",
+            "developerName": "externalId",
+            "id": "",
+            "typeElementDeveloperName": null,
+            "typeElementId": null
+        }
+    ],
+    "serviceElementDeveloperName": null,
+    "serviceElementId": null,
+    "updateByName": false,
+}
