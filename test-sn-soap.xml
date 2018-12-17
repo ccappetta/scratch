@@ -1,0 +1,15 @@
+<Envelope>
+  <Body>
+    <CreateRequest>
+      <address>Rodrigo Test</address>
+      <bundle>System and Monitor</bundle>
+      <location_type>Remote</location_type>
+      <requested_for>872247</requested_for>
+      <contact_number>9703180975</contact_number>
+      <country>US</country>
+      <justification>Rodrigo test 1013 USMT</justification>
+      <device>Latitude 4747 Notebook</device>
+      <headset>None</headset>
+    </CreateRequest>
+  </Body>
+</Envelope>
