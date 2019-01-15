@@ -1,0 +1,37 @@
+{
+  "abortStatement": {
+    "messages": [
+      {
+        "content": "Sorry, I could not understand. Goodbye.",
+        "contentType": "PlainText",
+        "groupNumber": null
+      }
+    ],
+    "responseCard": null
+  },
+   "checksum": "15bd85a0-dd01-478e-bd51-15417d5adec5",
+   "childDirected": false,
+   "clarificationPrompt": {
+      "maxAttempts": 7,
+      "messages": [
+        {
+          "content": "Sorry, can you please repeat that?",
+		   "contentType": "PlainText",
+          "groupNumber": null
+        }
+      ],
+      "responseCard": null
+   },
+   "createVersion": true,
+   "description": null,
+   "idleSessionTTLInSeconds": 900,
+   "intents": [
+     {
+       "intentName": "WhereCanIFind",
+       "intentVersion": 2
+     }
+   ],
+   "locale": "en-us",
+   "processBehavior": "BUILD",
+   "voiceId": "0"
+}
