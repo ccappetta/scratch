@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" class="manywho" style="height: 100%;">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link rel="icon" href="https://assets.manywho.com/img/favicon.ico">
+    <title>Demo Request Portal</title>
+    <style>
+    
+        .mw-bs {
+        background-image: url(https://files-manywho-com.s3.amazonaws.com/87a64924-b66c-4d55-a3e7-0f22fb42b896/Opaque%20Atom%2080.jpg);
+        background-position: center;
+        }
+        
+        .mw-bs .wait-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            z-index: 1100;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .mw-bs .wait-message {
+            position: relative;
+            text-align: center;
+            margin-top: 1em;
+            display: block;
+            top: 40%;
+            font-size: 2em;
+            padding: 0 2em;
+        }
+
+      /*Awesome engine icon by Matt Norton!*/
+      .wait-spinner {
+            position:absolute;
+            left:50%;
+            top:50%;
+            display: block;
+            width: 300px;
+            height: 140px;
+            -webkit-transform:  translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            background: url(https://files-manywho-com.s3.amazonaws.com/5a98a1f9-d884-4d1b-8fa3-c984306cd504/Boomi.png) no-repeat;
+            background-size: 100%;
+                order: 0;
+            flex: 0 1 auto;
+            z-index:999999;
+        }
+        
+        .wait-spinner:after {
+          content: "";
+          display: inline-block;
+          width: 90px;
+          height: 90px;
+          position: absolute;
+          left: -110px;
+          -webkit-transform-style: preserve-3d;
+                  transform-style: preserve-3d;
+          -webkit-transform: translate3d(0, 0, 0);
+                  transform: translate3d(0, 0, 0);
+          -webkit-transform-origin: 50% 50%;
+                  transform-origin: 50% 50%;
+          -webkit-animation: spin 1.3s infinite ease-in-out;
+                  animation: spin 1.3s infinite ease-in-out;
+          font-size: 34px;
+          background: url("https://files-manywho-com.s3.amazonaws.com/5a98a1f9-d884-4d1b-8fa3-c984306cd504/Dell_Logo_Blue_rgb-300x300.png") no-repeat;
+          background-size: 100%;
+          background-position: left center;
+        }
+        
+        .wait-spinner:before {
+          content: "";
+          position: absolute;
+          left: -10px;
+          bottom: -30px;
+          -webkit-filter: blur(13px);
+                  filter: blur(13px);
+          width: 90px;
+          height: 2px;
+          background: #000;
+          left: -110px;
+          .
+        	transform: translate3d(0, 0, 0);
+          -webkit-transform-origin: 50% 50%;
+                  transform-origin: 50% 50%;
+          -webkit-animation: spin 1.3s infinite ease-in-out;
+                  animation: spin 1.3s infinite ease-in-out;
+        }
+        
+        @-webkit-keyframes spin {
+          0% {
+            -webkit-transform: rotateY(0deg);
+          }
+          60% {
+            -webkit-transform: rotateY(-360deg);
+          }
+          100% {
+            -webkit-transform: rotateY(-360deg);
+          }
+        }
+        
+        @keyframes spin {
+          0% {
+            -webkit-transform: rotateY(0deg);
+          }
+          60% {
+            -webkit-transform: rotateY(-360deg);
+          }
+          100% {
+            -webkit-transform: rotateY(-360deg);
+          }
+        }
+    </style>
+</head>
+<body style="height: 100%;">
+    <div id="manywho">
+        <div id="loader" class="mw-bs" style="width: 100%; height: 100%;">
+            <div class="wait-container">
+                <div class="wait-spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://assets.manywho.com/js/vendor/jquery-2.1.4.min.js"></script>
+
+    <script>
+        var manywho = {
+            cdnUrl: 'https://assets.manywho.com',
+            requires: ['core', 'bootstrap3'],
+            initialize: function () {
+
+                var queryParameters = manywho.utils.parseQueryString(window.location.search.substring(1));
+
+                manywho.settings.initialize({
+                    adminTenantId: 'da497693-4d02-45db-bc08-8ea16d2ccbdf',
+                    playerUrl: [ location.protocol, '//', location.host, location.pathname ].join(''),
+                    joinUrl: [ location.protocol, '//', location.host, location.pathname ].join('')
+                });
+                
+                //Adding mechanism to pass input values via query string - Cappetta 12/24/17
+                var req = queryParameters['requestid'] != null ? queryParameters['requestid'] : 'none';
+                var inputs = [
+                    {"request_id": req}
+                ];
+                var startInputs = manywho.json.generateFlowInputs(inputs);
+                //End bit for inputs ^^
+
+                var options = {
+                    authentication: {
+                        sessionId: queryParameters['session-token'],
+                        sessionUrl: queryParameters['session-url']
+                    },
+                    navigationElementId: queryParameters['navigation-element-id'],
+                    mode: queryParameters['mode'],
+                    reportingMode: queryParameters['reporting-mode'],
+                    replaceUrl: true,
+                    collaboration: {
+                        isEnabled: false
+                    },
+                    inputs: startInputs,  
+                    annotations: null,
+                    navigation: {
+                        isFixed: true,
+                        isWizard: false
+                    },
+                    callbacks: [],
+                    theme: queryParameters['theme'] != null ? queryParameters['theme'] : 'spacelab'
+                };
+
+                var tenantId = queryParameters['tenant-id'];
+                if (!tenantId) {
+                    tenantId = window.location.pathname
+                                .split('/')
+                                .filter(function (path) {
+                                    return path && path.length > 0;
+                                })[0];
+                }
+
+                manywho.engine.initialize(
+                    tenantId,
+                    queryParameters['flow-id'],
+                    queryParameters['flow-version-id'],
+                    'main',
+                    queryParameters['join'],
+                    queryParameters['authorization'],
+                    options,
+                    queryParameters['initialization']
+                );
+
+            }
+        };
+    </script>
+
+    <script src="https://assets.manywho.com/js/loader.min.js"></script>
+    <style>
+    /*Logo*/
+    
+    .mw-bs .navbar-brand {
+        background: url(https://files-manywho-com.s3.amazonaws.com/5a98a1f9-d884-4d1b-8fa3-c984306cd504/Boomi-Logo-Clr.png);
+        background-position: left center;
+        background-repeat: no-repeat;
+        font-weight: 500;
+        line-height: 20px;
+        margin: 3px 15px 10px 15px !important;
+        background-size: contain;
+        font-size: 20;
+        display: block;
+        width: 300px;
+        position: relative;
+        z-index: 100;
+    }
+    
+    .mw-bs .navbar {
+        background: #163F6C;
+            -webkit-box-shadow: 0 8px 6px -6px black;
+            -moz-box-shadow: 0 8px 6px -6px black;
+        box-shadow: 0 8px 6px -6px black;
+        font-size: 15px;
+    }
+    
+    .mw-bs .navbar-default .navbar-nav>.active>a, .mw-bs .navbar-default .navbar-nav>li>a {
+        background: #163F6C !important;
+        color: white !important;
+        font-weight:bold;
+    }
+     
+    .mw-bs .btn-primary {
+        background:#0087CC;
+    }
+        
+    .mw-bs .btn-primary:hover {
+        background:#163F6C;
+        color: white;
+    }   
+    
+    .mw-bs .background {
+        background-color: white;
+        padding: 0px 10px 0px 10px
+    }
+    
+    .demo-header-container {
+    	text-align: center;
+    	background-color: white;
+    	border-style: solid;
+    	border-color: #657792;
+    	padding: 2rem !important;
+    	background-position: right;
+    	background-size: contain;
+    	border-radius: 15px;
+    }
+    
+    .warning {
+        color: #FF7C66;
+    }
+        
+    </style>
+</body>
+</html>
