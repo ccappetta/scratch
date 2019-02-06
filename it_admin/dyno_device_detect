@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+    <script src="https://unpkg.com/current-device/umd/current-device.min.js"></script>
+    <script>
+        var config = {
+        	mobile: 'https://flow.manywho.com/866ce788-1243-4ebd-82cc-fd88cb5c657c/play/mobile/?flow-id=db24bf07-d357-4fcd-bc31-9d776b57ca92',
+        	tablet: 'https://flow.manywho.com/866ce788-1243-4ebd-82cc-fd88cb5c657c/play/mobile/?flow-id=db24bf07-d357-4fcd-bc31-9d776b57ca92',
+        	desktop: 'https://flow.manywho.com/866ce788-1243-4ebd-82cc-fd88cb5c657c/play/nh/?flow-id=8ae9402d-0692-4ce9-ac12-6072fe37ac42',
+        	default: 'https://flow.manywho.com/866ce788-1243-4ebd-82cc-fd88cb5c657c/play/default/?flow-id=c355e832-842c-45f0-bd13-506efa35d34d'
+        }
+        
+        var deviceConfig = config[device.type === 'unknown' ? 'default' : device.type];
+        if (!deviceConfig)
+            deviceConfig = config.default;
+
+        if (typeof deviceConfig === 'string')
+            redirect(deviceConfig);
+        
+        var osConfig = deviceConfig[device.os === 'unknown' ? 'default' : device.os];
+        if (!osConfig)
+            osConfig = deviceConfig.default;
+
+        if (typeof osConfig === 'string')
+            redirect(osConfig);
+
+        var orientationConfig = osConfig[device.orientation === 'unknown' ? 'default' : device.orientation];
+        if (!orientationConfig)
+            orientationConfig = osConfig.default;
+
+        if (typeof orientationConfig === 'string')
+            redirect(orientationConfig);
+        
+        function redirect(url) {
+            if (/^http(s?):\/\//.test(url))
+                window.location = url;
+            else {
+                tenantId = window.location.pathname
+                                .split('/')
+                                .filter(function (path) {
+                                    return path && path.length > 0;
+                                })[0];
+
+
+                window.location = window.location.origin + '/' + tenantId + '/play/' + url + window.location.search
+            }
+        }
+    </script>
+</html>
