@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" class="manywho" style="height: 100%;">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link rel="icon" href="https://assets.manywho.com/img/favicon.ico">
+    <title>Boomi Flow</title>
+    <link rel="icon" type="image/png" href="https://files-manywho-com.s3.amazonaws.com/4599bfde-2ed0-4c14-bf26-53772a1a2f6f/favicon.png">
+    <link rel="apple-touch-icon" href="https://files-manywho-com.s3.amazonaws.com/4599bfde-2ed0-4c14-bf26-53772a1a2f6f/touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://files-manywho-com.s3.amazonaws.com/4599bfde-2ed0-4c14-bf26-53772a1a2f6f/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="https://files-manywho-com.s3.amazonaws.com/4599bfde-2ed0-4c14-bf26-53772a1a2f6f/touch-icon-ipad-retina.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://files-manywho-com.s3.amazonaws.com/4599bfde-2ed0-4c14-bf26-53772a1a2f6f/touch-icon-iphone-retina.png">
+    <link rel="icon" sizes="192x192" href="https://files-manywho-com.s3.amazonaws.com/4599bfde-2ed0-4c14-bf26-53772a1a2f6f/android-icon.png">
+    <meta name="msapplication-square310x310logo" content="https://files-manywho-com.s3.amazonaws.com/4599bfde-2ed0-4c14-bf26-53772a1a2f6f/microsoft-icon.png">
+    <style>
+        .mw-bs .wait-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            z-index: 1100;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .mw-bs .wait-message {
+            position: relative;
+            text-align: center;
+            margin-top: 1em;
+            display: block;
+            top: 40%;
+            font-size: 2em;
+            padding: 0 2em;
+        }
+
+        .wait-spinner {
+            position:absolute;
+            left:50%;
+            top:50%;
+            display: block;
+            width: 150px;
+            height: 150px;
+            -webkit-transform:  translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            /*background: url(https://files-manywho-com.s3.amazonaws.com/5a98a1f9-d884-4d1b-8fa3-c984306cd504/Dell_Logo_Blue_rgb-300x300.png) no-repeat;*/
+            background-size: 100%;
+                order: 0;
+            flex: 0 1 auto;
+            z-index:999999;
+            /*transform: scale(0.75);*/
+        }
+        
+        .wait-spinner:after {
+          content: "";
+          display: inline-block;
+          width: 150px;
+          height: 150px;
+          position: absolute;
+          /*left: -110px;*/
+          -webkit-transform-style: preserve-3d;
+                  transform-style: preserve-3d;
+          -webkit-transform: translate3d(0, 0, 0);
+                  transform: translate3d(0, 0, 0);
+          -webkit-transform-origin: 50% 50%;
+                  transform-origin: 50% 50%;
+          -webkit-animation: spin 1.3s infinite ease-in-out;
+                  animation: spin 1.3s infinite ease-in-out;
+          font-size: 34px;
+          background: url("https://files-manywho-com.s3.amazonaws.com/5a98a1f9-d884-4d1b-8fa3-c984306cd504/Dell_Logo_Blue_rgb-300x300.png") no-repeat;
+          background-size: 100%;
+          background-position: left center;
+        }
+        
+        .wait-spinner:before {
+          content: "";
+          position: absolute;
+          left: -10px;
+          bottom: -30px;
+          -webkit-filter: blur(13px);
+                  filter: blur(13px);
+          width: 150px;
+          height: 2px;
+          background: #000;
+          .
+        	transform: translate3d(0, 0, 0);
+          -webkit-transform-origin: 50% 50%;
+                  transform-origin: 50% 50%;
+          -webkit-animation: spin 1.3s infinite ease-in-out;
+                  animation: spin 1.3s infinite ease-in-out;
+        }
+        
+        @-webkit-keyframes spin {
+          0% {
+            -webkit-transform: rotateY(0deg);
+          }
+          60% {
+            -webkit-transform: rotateY(-360deg);
+          }
+          100% {
+            -webkit-transform: rotateY(-360deg);
+          }
+        }
+        
+        @keyframes spin {
+          0% {
+            -webkit-transform: rotateY(0deg);
+          }
+          60% {
+            -webkit-transform: rotateY(-360deg);
+          }
+          100% {
+            -webkit-transform: rotateY(-360deg);
+          }
+        }
+        
+           /*.mw-bs {*/
+            /*        -webkit-overflow-scrolling: touch;*/
+            /*    }*/
+        
+    </style>
+</head>
+<body style="height: 100%;">
+    <div id="manywho">
+        <div id="loader" class="mw-bs" style="width: 100%; height: 100%;">
+            <div class="wait-container">
+                <div class="wait-spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://assets.manywho.com/js/vendor/jquery-2.1.4.min.js"></script>
+
+    <script>
+        var manywho = {
+            cdnUrl: 'https://assets.manywho.com',
+            requires: ['core', 'bootstrap3'],
+            initialize: function () {
+
+                var queryParameters = manywho.utils.parseQueryString(window.location.search.substring(1));
+
+                manywho.settings.initialize({
+                    adminTenantId: 'da497693-4d02-45db-bc08-8ea16d2ccbdf',
+                    playerUrl: [ location.protocol, '//', location.host, location.pathname ].join(''),
+                    joinUrl: [ location.protocol, '//', location.host, location.pathname ].join('')
+                });
+
+                var options = {
+                    authentication: {
+                        sessionId: queryParameters['session-token'],
+                        sessionUrl: queryParameters['session-url']
+                    },
+                    navigationElementId: queryParameters['navigation-element-id'],
+                    mode: queryParameters['mode'],
+                    reportingMode: queryParameters['reporting-mode'],
+                    replaceUrl: true,
+                    isFullWidth: true,
+                    collaboration: {
+                        isEnabled: false
+                    },
+                    inputs: null,
+                    annotations: null,
+                    navigation: {
+                        isFixed: true,
+                        isWizard: false,
+                        // components: [
+                        //     React.DOM.li(null, React.DOM.a({ href: '#' }, 'My Custom Nav Item'))
+                        // ]
+                    },
+                    callbacks: [],
+                    theme: queryParameters['theme'] != null ? queryParameters['theme'] : 'yeti'
+                };
+
+                var tenantId = queryParameters['tenant-id'];
+                if (!tenantId) {
+                    tenantId = window.location.pathname
+                                .split('/')
+                                .filter(function (path) {
+                                    return path && path.length > 0;
+                                })[0];
+                }
+
+                manywho.engine.initialize(
+                    tenantId,
+                    queryParameters['flow-id'],
+                    queryParameters['flow-version-id'],
+                    'main',
+                    queryParameters['join'],
+                    queryParameters['authorization'],
+                    options,
+                    queryParameters['initialization']
+                );
+
+            }
+        };
+    </script>
+
+    <script src="https://assets.manywho.com/js/loader.min.js"></script>
+    <style>
+    /*.mw-bs .foot-btns {*/
+        /*max-width:100% !important;*/
+    /*    white-space: normal;*/
+
+    /*}*/
+    
+    .mw-bs .main-scroller {
+        margin-bottom: 68px;
+        background-color:#004080;
+        color:#fff;
+    }
+
+    
+    .mw-bs .foot-container {
+        background-color:#fff;
+        position:fixed;
+        bottom:0;
+        width:100%;
+        margin-left:-15px;
+    }
+    
+    .mw-bs .foot-container .btn-group {
+        width: 100%;
+    }
+    
+    .mw-bs .foot-btn {
+        font-size:10px;
+        border: 0px transparent !important;
+        color:#323232 !important;
+        width:25vw;
+        box-shadow:none;
+        margin-bottom: 0 !important;
+        /*margin:0px 0px 0px 0px;*/
+        /*height:100%;*/
+    }
+
+    .mw-bs .foot-btn .glyphicon, .mw-bs .foot-btn .glyphicon:before {
+        font-size:30px;
+        color: #000080;
+        margin: 0 auto;
+        margin-bottom:8px;
+
+    }
+    
+    .mw-bs .foot-btn span {
+        display:block;
+    }
+
+    .navbar-toggle.collapsed, .navbar-toggle[aria-expanded="true"] {
+        float: left;
+        margin-left: 1rem;
+    }
+    
+    .mw-bs .nav li > a {
+        padding: 1rem 2rem;
+    }
+    
+    .mw-bs .nav > li > a > .caret{
+        margin-left: 1rem;
+        border: none;
+    }
+    
+    .mw-bs .nav > li > a > .caret:before {
+    	border-style: solid;
+    	border-width: 0.15em 0.15em 0 0;
+    	content: '';
+    	display: inline-block;
+    	height: 0.65em;
+    	left: 0.15em;
+    	position: relative;
+    	top: 0.15em;
+    	transform: rotate(-45deg);
+    	vertical-align: top;
+    	width: 0.65em;
+    }
+    
+    .mw-bs .nav > li > a > .caret:before {
+    	top: -15px;
+    	transform: rotate(135deg);
+    }
+    
+    .mw-bs .navbar-default .navbar-nav > li.open .caret {
+        display: inline-block;
+        width: 24px;
+        height: 6px;
+        background: #000080;
+    }
+    
+    .mw-bs .navbar-default .navbar-nav > li.open .caret:before {
+        display: none;
+    }
+    
+    .mw-bs .navbar-default .navbar-nav .open .dropdown-menu {
+        padding-left: 1rem;
+    }
+    
+    .mw-bs .navbar-default .navbar-nav .open .dropdown-menu > li > a,
+    .mw-bs .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .mw-bs .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: black;
+        background: transparent;
+        font-size: 1.5em;
+    }
+    
+    .mw-bs .navbar-default .navbar-nav > li.top-nav-element > a {
+        font-size: 2em;
+        font-weight: bold;
+        color: #000080;
+    }
+    
+    .mw-bs .navbar-default .navbar-nav > li.top-nav-element > a:hover,
+    .mw-bs .navbar-default .navbar-nav > li.top-nav-element > a:focus,
+    .mw-bs .navbar-default .navbar-nav > li.top-nav-element > a:active,
+    .mw-bs .navbar-default .navbar-nav > .active > a,
+    .mw-bs .navbar-default .navbar-nav > .open > a {
+        background: transparent;
+        color: #000080;
+    }
+    
+    .mw-bs .navbar-nav .open .dropdown-menu > li > a {
+        
+        padding: 1rem;
+    }
+    
+    .mw-bs .navbar-default .navbar-collapse {
+        border-color: #ccc;
+    }
+
+    .mw-bs .navbar-collapse {
+        display: block;
+        position: fixed;
+        z-index: 100;
+        bottom: 68px;
+        left: 0;
+        top: 45px;
+        right: 15%;
+        background: #ffffff;
+        border-color: none;
+        border-bottom: 1px solid #ccc;
+        visibility: visible;
+        transform: translate3d(-100%, 0, 0);
+        transition: transform 0.3s ease;
+    }
+    
+    .mw-bs .navbar-collapse.in {
+        transform: translate3d(0, 0, 0);
+    }
+    
+    .mw-bs label:empty,
+    .mw-bs .help-block:empty,
+    .mw-bs th:empty {
+        display: none;
+    }
+    
+ 
+        
+    </style>
+    
+</body>
+</html>
