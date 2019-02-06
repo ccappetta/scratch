@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" class="manywho" style="height: 100%;">
+<head>
+    <!--<script src="https://files-manywho-com.s3.amazonaws.com/87a8b44b-b6bc-4609-924d-2b3cc1b60e61/pace.js"></script>-->
+    <!--<link href="https://files-manywho-com.s3.amazonaws.com/87a8b44b-b6bc-4609-924d-2b3cc1b60e61/pace-theme-center-atom.css" rel="stylesheet" />-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link rel="icon" href="https://assets.manywho.com/img/favicon.ico">
+    <title>Boomi Project Management</title>
+    <style>
+        .mw-bs .wait-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            z-index: 1100;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .mw-bs .wait-message {
+            position: relative;
+            text-align: center;
+            margin-top: 1em;
+            display: block;
+            top: 40%;
+            font-size: 2em;
+            padding: 0 2em;
+        }
+
+        /* Spinner */
+        .mw-bs .wait-spinner {
+            display: block;
+            position: relative;
+            left: 50%;
+            width: 150px;
+            height: 150px;
+            margin: 200px 0 0 -75px;
+            border-radius: 50%;
+            -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+            animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+            transform: scale(1.75);
+        }
+
+        /* More Spinner */
+        .mw-bs .wait-spinner:before {
+            content: '';
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin-top: -10px;
+            margin-left: -10px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            border-top-color: #333;
+            animation: spinner .6s linear infinite;
+        }
+
+        @keyframes spinner {
+          to {transform: rotate(360deg);}
+        }
+
+
+
+    </style>
+</head>
+<body style="height: 100%;">
+    <div id="manywho">
+        <div id="loader" class="mw-bs" style="width: 100%; height: 100%;">
+            <div class="wait-container">
+                <div class="wait-spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://assets.manywho.com/js/vendor/jquery-2.1.4.min.js"></script>
+
+    <script>
+        var manywho = {
+            cdnUrl: 'https://assets.manywho.com',
+            requires: ['core', 'bootstrap3'],
+            initialize: function () {
+
+                var queryParameters = manywho.utils.parseQueryString(window.location.search.substring(1));
+
+                manywho.settings.initialize({
+                    adminTenantId: 'da497693-4d02-45db-bc08-8ea16d2ccbdf',
+                    playerUrl: [ location.protocol, '//', location.host, location.pathname ].join(''),
+                    joinUrl: [ location.protocol, '//', location.host, location.pathname ].join('')
+                });
+                
+                //Inputs 
+                var input1 = queryParameters['input1'] != null ? queryParameters['input1'] : 'noInput1';
+                var input2 = queryParameters['input2'] != null ? queryParameters['input2'] : 'noInput2';
+                var input3 = queryParameters['input3'] != null ? queryParameters['input3'] : 'noInput3';
+                var input4 = queryParameters['input4'] != null ? queryParameters['input4'] : 'noInput4';
+                var input5 = queryParameters['input5'] != null ? queryParameters['input5'] : 'noInput5';
+                var input6 = queryParameters['input6'] != null ? queryParameters['input6'] : 'noInput6';
+                var input7 = queryParameters['input7'] != null ? queryParameters['input7'] : 'noInput7';
+                var inputEmail = queryParameters['inputEmail'] != null ? queryParameters['inputEmail'] : 'chriscappetta@boomi.com';
+                var inputPhone = queryParameters['inputPhone'] != null ? queryParameters['inputPhone'] : '9703180975';
+                var inputMode = queryParameters['inputMode'] != null ? queryParameters['inputMode'] : 'auto';
+                
+                var inputs = [
+                    {"input1": input1},
+                    {"input2": input2},
+                    {"input3": input3},
+                    {"input4": input4},
+                    {"input5": input5},
+                    {"input6": input6},
+                    {"input7": input7},
+                    {"inputEmail": inputEmail},
+                    {"inputPhone": inputPhone},
+                    {"inputMode": inputMode}
+                ];
+                var jsonInputs = manywho.json.generateFlowInputs(inputs);
+                //End bit for inputs ^^
+                
+
+
+                var options = {
+                    authentication: {
+                        sessionId: queryParameters['session-token'],
+                        sessionUrl: queryParameters['session-url']
+                    },
+                    navigationElementId: queryParameters['navigation-element-id'],
+                    isFullWidth: true,  //Capp
+                    mode: queryParameters['mode'],
+                    reportingMode: 'PATH_AND_VALUES',
+                    replaceUrl: true,
+                    collaboration: {
+                        isEnabled: true
+                    },
+                    inputs: jsonInputs, //Inject inputs defined above
+                    annotations: null,
+                    navigation: {
+                        isFixed: true,
+                        isWizard: false
+                    },
+                    callbacks: [],
+                    theme: queryParameters['theme'] != null ? queryParameters['theme'] : 'sandstone' //Nice addition by Jack Gibson
+                };
+
+                var tenantId = queryParameters['tenant-id'];
+                if (!tenantId) {
+                    tenantId = window.location.pathname
+                                .split('/')
+                                .filter(function (path) {
+                                    return path && path.length > 0;
+                                })[0];
+                }
+                
+                   // This is how you change text in to an icon within the cells. Add "custom-column" to the meta data for the column custom component property. 
+                class customColumn extends React.Component {
+				    render() {
+				        if (this.props.contentValue) {
+        		            if (this.props.contentValue == '1')
+        			            return React.createElement('span', { className: "glyphicon glyph-lg glyphicon glyphicon-flag", style:{ color: 'black' }});
+        			        else if (this.props.contentValue == '2')
+        			            return React.createElement('span', { className: "glyphicon glyph-lg glyphicon glyphicon-option-horizontal", style:{ color: 'purple' }});
+        			        else if (this.props.contentValue == '3')
+        			            return React.createElement('span', { className: "glyphicon glyph-lg glyphicon glyphicon-ok", style:{ color: 'green' }});
+        			        else if (this.props.contentValue == '4')
+        			            return React.createElement('span', { className: "glyphicon glyph-lg glyphicon glyphicon-alert", style:{ color: 'red' }});
+        			        else if (this.props.contentValue == '0')
+        			            return React.createElement('span', { className: "glyphicon glyph-lg glyphicon glyphicon-piggy-bank", style:{ opacity: 0 , color: 'green' }});
+        			        else
+        			            return this.props.contentValue;
+				        }
+				        return null;
+				    }
+				};
+
+				manywho.component.register('custom-column', customColumn);
+                
+                
+
+                manywho.engine.initialize(
+                    tenantId,
+                    queryParameters['flow-id'],
+                    queryParameters['flow-version-id'],
+                    'main',
+                    queryParameters['join'],
+                    queryParameters['authorization'],
+                    options,
+                    queryParameters['initialization']
+                );
+
+            }
+        };
+    </script>
+
+    <script src="https://assets.manywho.com/js/loader.min.js"></script>
+    <style>
+        /*Navbar styling*/
+        .mw-bs .navbar-brand {
+            background: url(https://files-manywho-com.s3.amazonaws.com/038d12aa-2256-455c-9b4e-8e620970e451/Atom-WordMark-clr.png);
+            background-position: left center;
+            background-repeat: no-repeat;
+            font-size: 1px;
+            font-weight: 500;
+            line-height: 20px;
+            width: 90px;
+            height: 40px;
+            margin: 10px 15px 10px 15px !important;
+            padding: 0px 0px 0px 36px !important;
+            font-weight: bold;
+            background-size: contain;
+        }
+        
+        .mw-bs .presentation-details {
+            border: 1px solid grey;
+            border-radius: 3px;
+            padding: 0 15px 15px 15px;
+           
+        }
+        
+        .mw-bs .opps-tab .tab-content {
+            margin-top: 0px;
+            border: 1px solid #ccc;
+            border-top: 0px;
+            padding: 15px;
+        }
+        
+        .mw-bs .nav-tabs>li {
+            float: left;
+            margin-bottom: -1px;
+            background: #eaeaea;
+        }
+        
+        .mw-bs .summary-table {
+            max-width:400px;
+        }
+        
+        .mw-bs .summary-table  td, .mw-bs .summary-table th {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        
+        .mw-bs #myId {
+            border: 1px solid grey;
+            width: 90px;
+           
+        }
+
+        
+        .mw-bs .docframe {
+            width:100%;
+            height: 470px;
+            max-width: 100%;
+        }
+        
+        .mw-bs .tip-preso {
+            border: 1px solid grey;
+            border-radius: 3px;
+            background: #f7f7f7;
+            max-width: 500px;
+            padding-top: 0px;
+            padding-left: 10px;
+            padding-bottom: 20px;
+        }
+        
+        .mw-bs .alert-danger {
+            background: #D3D3D3;
+        }
+        
+        .mw-bs .dash .glyphicon {
+            font-size:30px;
+            
+        }
+        
+        @media screen and (min-width: 692px) {
+        .mw-bs .no-pad {
+            margin-left: -15px;
+        }
+        }
+    </style>
+    <!--TABLE STYLING -->
+    <style>
+      /** {*/
+      /*    -moz-box-sizing: border-box;*/
+      /*    -webkit-box-sizing: border-box;*/
+      /*    box-sizing: border-box;*/
+      /*  }*/
+        /* Headline Styling */
+        .mw-bs th{
+          font-weight:normal; 
+        }
+        .mw-bs .table-bordered>tbody>tr:first-child th{
+            border:2px solid #fff;
+        }
+        .mw-bs .summary-table {
+            border:none;
+        }
+        .mw-bs .table-bordered, .mw-bs .table-bordered > tbody > tr > td, .mw-bs .table-bordered > tbody > tr > th, .mw-bs .table-bordered > tfoot > tr > td, .mw-bs .table-bordered > tfoot > tr > th, .mw-bs .table-bordered > thead > tr > td, .mw-bs .table-bordered > thead > tr > th { 
+            border:2px solid #fff;
+        }
+        .mw-bs .table > tbody > tr > td, .mw-bs .table > tbody > tr > th, .mw-bs .table > tfoot > tr > td, .mw-bs .table > tfoot > tr > th, .mw-bs .table > thead > tr > td, .mw-bs .table > thead > tr > th, .mw-bs .table-hover > tbody > tr:hover, .mw-bs .table-striped > tbody > tr:nth-of-type(2n+1) { 
+            border:2px solid #fff;
+        }
+
+        .mw-bs .table tr:first-child,
+        .mw-bs .table-bordered>tbody>tr:first-child>td, .mw-bs .table-bordered>tbody>tr:first-child>th, .mw-bs .table-bordered>tfoot>tr:first-child>td, .mw-bs .table-bordered>tfoot>tr:first-child>th, .mw-bs .table-bordered>thead>tr:first-child>td, .mw-bs .table-bordered>thead>tr:first-child>th .mw-bs .table-hover>tbody>tr:hover, .mw-bs .table-striped>tbody>tr:first-child{
+            background:#325d88;
+            color:#ffffff;
+        }
+        
+        /* row styling */ 
+        .mw-bs .table>tbody>tr.info>td, .mw-bs .table>tbody>tr.info>th, .mw-bs .table>tbody>tr>td.info, .mw-bs .table>tbody>tr>th.info, .mw-bs .table>tfoot>tr.info>td, .mw-bs .table>tfoot>tr.info>th, .mw-bs .table>tfoot>tr>td.info, .mw-bs .table>tfoot>tr>th.info, .mw-bs .table>thead>tr.info>td, .mw-bs .table>thead>tr.info>th, .mw-bs .table>thead>tr>td.info, .mw-bs .table>thead>tr>th.info {
+            background-color: #e8e8e8;
+            border:3px solid #ffffff;
+            border-width:3px;
+            max-width: 100%;
+        }
+        
+        /* overwrite */ 
+        .mw-bs .table .table-input-display {
+            width:100% !important; 
+        }
+        .mw-bs .table-responsive {
+            overflow-x: inherit; 
+        }
+        
+        
+        .mw-bs table {
+          border-collapse: separate;
+          background: #fff;
+          -moz-border-radius: 5px;
+          -webkit-border-radius: 5px;
+          border-radius: 5px;
+          margin: 50px auto;
+          -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+          -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .mw-bs thead {
+          -moz-border-radius: 5px;
+          -webkit-border-radius: 5px;
+          border-radius: 5px;
+        }
+        
+        .mw-bs thead th {
+          font-size: 16px;
+          font-weight: 400;
+          color: #fff;
+          text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+          text-align: left;
+          padding: 20px;
+          background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzY0NmY3ZiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzRhNTU2NCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+          background-size: 100%;
+          background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #646f7f), color-stop(100%, #4a5564));
+          background-image: -moz-linear-gradient(#646f7f, #4a5564);
+          background-image: -webkit-linear-gradient(#646f7f, #4a5564);
+          background-image: linear-gradient(#646f7f, #4a5564);
+          border-top: 1px solid #858d99;
+        }
+        .mw-bs thead th:first-child {
+          -moz-border-radius-topleft: 5px;
+          -webkit-border-top-left-radius: 5px;
+          border-top-left-radius: 5px;
+        }
+        .mw-bs thead th:last-child {
+          -moz-border-radius-topright: 5px;
+          -webkit-border-top-right-radius: 5px;
+          border-top-right-radius: 5px;
+        }
+        
+        .mw-bs tbody tr td {
+          font-weight: 400;
+          color: #5f6062;
+          font-size: 13px;
+          padding: 20px 20px 20px 20px;
+        }
+        
+        .mw-bs tbody tr:nth-child(2n) {
+          background: #f0f3f5;
+        }
+        
+        .mw-bs tbody tr:last-child td {
+          border-bottom: none;
+        }
+        .mw-bs tbody tr:last-child td:first-child {
+          -moz-border-radius-bottomleft: 5px;
+          -webkit-border-bottom-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+        }
+        .mw-bs tbody tr:last-child td:last-child {
+          -moz-border-radius-bottomright: 5px;
+          -webkit-border-bottom-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }
+        
+
+        .mw-bs tbody:hover > tr:hover td {
+          text-shadow: none;
+          color: #2d2d2d;
+          filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+          opacity: 1;
+        }
+        .mw-bs th:hover {
+          color: #2d2d2d;
+          transition: all 0.25s cubic-bezier(0.82, 0, 0.55, 0.71);
+        } 
+
+
+        tbody:hover > tr td {
+          filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+          opacity: 0.75;
+          /* uncomment css below out for blur effect */
+          /*color:transparent;*/
+          /*text-shadow:0px 0px 2px rgba(0,0,0,0.8);*/
+        }
+        
+
+    </style>
+</body>
+</html>
