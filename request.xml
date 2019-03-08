@@ -1,0 +1,15 @@
+<Envelope>
+  <Body>
+    <CreateRequest>
+      <address>123 Capp Ln, Topeka KS, 76543 USA</address>
+      <device>devicename here</device>
+      <justification>New Hire Onboarding - Hardware Request</justification>
+      <location_type>Remote</location_type>
+      <requested_for>1111111</requested_for>
+      <contact_number>9705550975</contact_number>
+      <headset>None</headset>
+      <bundle>System &amp;amp; Monitor</bundle>
+      <country>USA</country>
+    </CreateRequest>
+  </Body>
+</Envelope>
