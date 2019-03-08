@@ -1,0 +1,9 @@
+<Envelope>
+  <Header></Header>
+  <Body>
+    <CreateRequestResponse xmlns="http://www.service-now.com/WorkdayNewHire">
+      <request_number>REQ4528383</request_number>
+      <sys_id>ef4123bddbcc7f0037a9777a8c96193b</sys_id>
+    </CreateRequestResponse>
+  </Body>
+</Envelope>
