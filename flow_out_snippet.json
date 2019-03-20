@@ -1,0 +1,9 @@
+            "flowOut": {
+                "flowId": {
+                    "id": "<your-destination-flow-id>",
+                    "versionId": null
+                },
+                "valueElementExternalIdentifierId": null,
+                "valueElementFlowId": null,
+                "valueElementStateId": null
+            },
