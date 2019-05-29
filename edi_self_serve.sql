@@ -1,0 +1,41 @@
+create table edi_self_serve
+(
+	edi_ss_pk bigserial not null
+		constraint edi_self_serve_pkey
+			primary key,
+	summary varchar,
+	tp_name varchar,
+	tp_address varchar,
+	tp_category varchar,
+	tp_notes varchar,
+	primary_contact_name varchar,
+	primary_contact_phone varchar,
+	primary_contact_email varchar,
+	primary_contact_title varchar,
+	it_contact_name varchar,
+	it_contact_phone varchar,
+	it_contact_email varchar,
+	it_contact_title varchar,
+	biz_contact_name varchar,
+	biz_contact_phone varchar,
+	biz_contact_email varchar,
+	biz_contact_title varchar,
+	process_start_time timestamp,
+	last_action_time timestamp,
+	phase1_complete_time timestamp,
+	full_process_complete_time timestamp,
+	current_status varchar,
+	last_action_notes varchar,
+	phase1_status varchar,
+	phase2_status varchar,
+	order_submission_validated varchar,
+	interchange_qualifier varchar,
+	interchange_id varchar,
+	functional_group_id varchar,
+	tp_street varchar,
+	tp_city varchar,
+	tp_state varchar,
+	tp_zip varchar,
+	tp_country varchar
+);
+
