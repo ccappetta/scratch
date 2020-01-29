@@ -1,5 +1,5 @@
-DROP procedure if exists proc_upsert_project_task_count_view;
-create procedure proc_upsert_project_task_count_view(IN dbname varchar(128))
+DROP procedure if exists proc_upsert_user_project_task_count_view;
+create procedure proc_upsert_user_project_task_count_view(IN dbname varchar(128))
 BEGIN
     SET @theSQL=CONCAT('
 create or replace view taskr_one.user_project_task_count_view as select `a`.`parent_project`        AS `parent_project`,
