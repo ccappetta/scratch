@@ -2,8 +2,7 @@ DROP procedure if exists proc_upsert_taskr_activity_stream_view;
 create procedure proc_upsert_taskr_activity_stream_view(IN dbname varchar(128))
 BEGIN
     SET @theSQL=CONCAT('
-
-create or replace view ', dbname,'.taskr_activity_stream as select ''task''                            AS `action_type`,
+create or replace view ', dbname,'.taskr_activity_stream as select ''task'' COLLATE utf8mb4_unicode_ci  AS `action_type`,
        `a`.`last_action_by`              AS `actor`,
        `a`.`last_modified_timestamp`     AS `action_time`,
        `a`.`task_uuid`                   AS `task_identifier`,
@@ -21,7 +20,7 @@ create or replace view ', dbname,'.taskr_activity_stream as select ''task''     
        `a`.`task_url`                    AS `task_url`
 from ', dbname,'.`task` `a`
 union all
-select ''comment''                       AS `action_type`,
+select ''comment'' COLLATE utf8mb4_unicode_ci  AS `action_type`,
        `b`.`commenter`                 AS `actor`,
        `b`.`comment_time`              AS `action_time`,
        `b`.`task_id`                   AS `task_identifier`,
@@ -31,9 +30,9 @@ select ''comment''                       AS `action_type`,
 from (', dbname,'.`task_comments` `b`
          join ', dbname,'.`task` `a` on ((`a`.`task_uuid` = `b`.`task_id`)))
 order by `action_time` desc;
-
 ');
     PREPARE stmt1 from @theSQL;
     EXECUTE stmt1;
     DEALLOCATE PREPARE stmt1;
 END;
+
