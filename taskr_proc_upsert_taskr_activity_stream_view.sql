@@ -21,7 +21,7 @@ SELECT ''task'' COLLATE utf8mb4_unicode_ci  AS action_type,
         END
         )
         ,''the task: '', UPPER(a.task_subject)) AS action_description
-FROM ', dbname,'task a
+FROM ', dbname,'.task a
 UNION ALL
 SELECT ''comment'' COLLATE utf8mb4_unicode_ci AS action_type,
        b.commenter AS actor,
@@ -37,3 +37,4 @@ ORDER BY action_time DESC;
     EXECUTE stmt1;
     DEALLOCATE PREPARE stmt1;
 END;
+
