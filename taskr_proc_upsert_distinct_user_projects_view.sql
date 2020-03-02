@@ -5,7 +5,7 @@ BEGIN
 
 create or replace view ', dbname,'.user_distinct_projects_view as select parent_project, created_by
 from ', dbname,'.task
-where ((parent_project is not null) and (parent_project <> ''))
+where ((parent_project is not null) and (parent_project <> ''''))
 group by parent_project, created_by
 order by parent_project;
 ');
