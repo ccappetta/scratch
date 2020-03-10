@@ -1,7 +1,7 @@
 DROP procedure if exists proc_createtbl_task_comments;
 create procedure proc_createtbl_task_comments(IN dbname varchar(128))
 BEGIN
-    SET @theSQL=CONCAT('CREATE TABLE ', dbname, '.task_comments
+    SET @theSQL=CONCAT('CREATE TABLE if not exists ', dbname, '.task_comments
 (
     comment_id   int auto_increment
         primary key,
