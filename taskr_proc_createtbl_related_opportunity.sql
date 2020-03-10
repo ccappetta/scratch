@@ -1,7 +1,7 @@
 DROP procedure if exists proc_createtbl_related_opportunity;
 create procedure proc_createtbl_related_opportunity(IN dbname varchar(128))
 BEGIN
-    SET @theSQL=CONCAT('CREATE TABLE ', dbname, '.related_opportunity
+    SET @theSQL=CONCAT('CREATE TABLE if not exists ', dbname, '.related_opportunity
 (
 	related_opportunity_id int auto_increment
 		primary key,
