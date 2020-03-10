@@ -1,7 +1,7 @@
 DROP procedure if exists proc_createtbl_task;
 create procedure proc_createtbl_task(IN dbname varchar(128))
 BEGIN
-    SET @theSQL=CONCAT('CREATE TABLE ', dbname, '.task
+    SET @theSQL=CONCAT('CREATE TABLE if not exists ', dbname, '.task
 (
     task_id                 int auto_increment
         primary key,
