@@ -4,7 +4,6 @@ BEGIN
     SET @theSQL=CONCAT('
 
 
-
 create or replace view ', dbname,'.view_task_account as select `A`.`account_sf_id`           AS `account_sf_id`,
        `A`.`account_name`            AS `account_name`,
        `A`.`account_owner_name`      AS `account_owner_name`,
@@ -13,7 +12,7 @@ create or replace view ', dbname,'.view_task_account as select `A`.`account_sf_i
        `A`.`account_tcv`             AS `account_tcv`,
        `A`.`account_uri`             AS `account_uri`,
        `T`.`task_subject`            AS `task_subject`,
-       `T`.`task_id`                 AS `task_id`,
+       `T`.`task_uuid`               AS `task_id`,
        `T`.`task_description`        AS `task_description`,
        `T`.`last_modified_timestamp` AS `task_last_modified`,
        `T`.`completed_timestamp`     AS `task_completed_timestamp`,
