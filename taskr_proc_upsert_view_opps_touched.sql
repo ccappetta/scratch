@@ -8,7 +8,7 @@ create or replace view ', dbname,'.view_opps_touched as select sum(`O`.`opp_acv`
        count(`O`.`opportunity_sf_id`) AS `opp_count`,
        `O`.`opportunity_status`       AS `opp_stage`,
        `O`.`is_closed`                AS `opp_is_closed`,
-       `O`.`task_count`               AS `task_count`
+       sum(`O`.`task_count`)          AS `task_count`
 from ', dbname,'.`distinct_opps` `O`
 group by `O`.`opportunity_status`;
 
