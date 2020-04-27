@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" class="manywho" style="height: 100%;">
+<head>
+    <meta charset="utf-8" />
+    
+    <!-- (1) Uncomment this to optimize for smart watches -->
+    <!-- <meta name="disabled-adaptations" content="watch"> --> 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+
+    <link rel="shortcut icon" href="https://assets.manywho.com/img/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="https://assets.manywho.com/img/favicon/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="https://assets.manywho.com/img/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https://assets.manywho.com/img/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="https://assets.manywho.com/img/favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="https://assets.manywho.com/img/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="https://assets.manywho.com/img/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https://assets.manywho.com/img/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="https://assets.manywho.com/img/favicon/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://assets.manywho.com/img/favicon/apple-touch-icon-180x180.png" />
+    <link rel="icon" sizes="192x192" href="https://assets.manywho.com/img/favicon/android-icon.png">
+    <meta name="msapplication-square310x310logo" content="https://assets.manywho.com/img/favicon/microsoft-310x310.png">
+
+    <!-- (2) The title tag modifies what shows in the browser tab-->
+    <title>Answers On Demand</title>
+    <style>
+    
+        /***********************************************************************************/
+        /* BEGIN: CSS Customizations                                                       */
+        /* NOTE: Boomi Brand colors from: https://brandfolder.com/boomi-brand/boomi-public */
+        /***********************************************************************************/
+        
+        /* Change Headinig Colors to Boomi Blue */
+        .mw-bs h1, .mw-bs h2, .mw-bs h3, .mw-bs h4, .mw-bs h5, .mw-bs h6 {
+        	color: #033D58 !important;
+        }
+
+        /* Rounded buttons */
+        button {
+            border-radius: 5px !important;
+        }
+        
+        /* Rounded inputs */   
+        input {
+            border-radius: 3px !important;
+        }
+            
+        /* Set text color inside inputs to be darker */
+        .mw-bs .form-control {
+        	color: #656565 !important;
+        }
+                
+        /* Change color of primary blue button to Boomi Blue */
+        .mw-bs .btn-primary {
+        	background-color: #0087CC !important;
+        }
+        
+        /* Custom Organization Save Button sticky footer */
+        button#a0e90efa-ca1a-4cdd-a920-a563d6a5e796 {
+            position: fixed;
+            bottom: -16px;
+            left: 0px;
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+            z-index: 100;
+        }
+
+        /* Set navbar background color */
+        .mw-bs .navbar-default {
+            background-color: #033D58 !important;
+        }
+        
+        /* Insert Boomi logo */
+        .mw-bs .navbar-default .navbar-brand {
+            background: url(https://cdn.brandfolder.io/2E9KWBX8/as/pxxryj-6thyo0-5h92wz/Boomi_Logo_RGB_Reverse.png);
+            background-position: center center;
+            background-repeat: no-repeat;
+            font-size: 0px;
+            font-weight: 500;
+            line-height: 20px;
+            width: 175px;
+            margin: 10px 15px 10px -7px !important; /* Align navbar logo with text in content well */
+            padding: 0px 0px 0px 0px !important;
+            font-weight: bold;
+            background-size: contain;
+        }
+        
+        /* Persist background over logo when hovered */
+        .mw-bs .navbar-default .navbar-brand:hover { 
+            background-color: #033D58 !important;
+        }
+        
+        /* Increase height of navbar UL */
+        ul.nav {
+        	height: 65px !important;
+        }
+        
+        ul.nav > li.top-nav-element {
+            height: 65px !important;
+            margin-top: 10px;
+            margin-right: 5px; /* space boxes slightly apart */
+        }
+        
+        /* Change top nav text color and size */
+        .mw-bs .navbar-default .navbar-nav > li > a {
+            color: #EEEEEE !important;
+            font-size: medium;
+            font-weight: bold !important;
+        }
+                
+        /* Change background color of active nav block */
+        .mw-bs .navbar-default .navbar-nav > .active > a, .mw-bs .navbar-default .navbar-nav > .active > a:hover, .mw-bs .navbar-default .navbar-nav > .active > a:focus {
+        	background-color: #0087CC !important;
+        	border-radius: 5px !important;
+        	
+        }
+        
+        /* Change background color of hovered nav block */
+        .mw-bs .navbar-default .navbar-nav > li > a:hover, .mw-bs .navbar-default .navbar-nav > li > a:focus {
+        	background-color: #22C5BE !important;
+        	border-radius: 5px !important;
+        	
+        }
+        
+        @media screen and (max-width: 768px) {
+            /* Force height of mobile menu only when it's visible */
+            /* NOTE: This fixes issue with scrollbars appearing in hamburger menu dropdown */
+            div#f7211f82-a367-4645-a070-fa44efbe8ac7 {
+                height: 235px !important;
+            }
+            
+            /* Give navbar logo some left padding when in mobile view */
+            .mw-bs .navbar-default .navbar-brand {
+                margin: 10px 15px 10px 7px !important;
+            }
+        }
+
+       
+        /*****************************/
+        /* END: CSS Customizations   */
+        /*****************************/
+        
+        .mw-bs .wait-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            z-index: 1100;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .mw-bs .wait-message {
+            position: relative;
+            text-align: center;
+            margin-top: 1em;
+            display: block;
+            top: 40%;
+            font-size: 2em;
+            padding: 0 2em;
+        }
+
+        /* (3) Simple spinner */
+        .mw-bs .wait-spinner {
+            display: block;
+            position: relative;
+            left: 50%;
+            width: 150px;
+            height: 150px;
+            margin: 200px 0 0 -75px;
+            border-radius: 50%;
+            -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+            animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+            transform: scale(1.75);
+        }
+        
+        .mw-bs .wait-spinner:before {
+            content: '';
+            box-sizing: border-box;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin-top: -10px;
+            margin-left: -10px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            border-top-color: #333;
+            animation: spinner .6s linear infinite;
+        }
+
+        @keyframes spinner {
+          to {transform: rotate(360deg);}
+        }
+        
+        #bfg-foot {
+            position:absolute;
+            bottom:0;
+            right:20px;
+            z-index:999;
+            background-color:white;
+            font-family:sans-serif;
+            margin:5px;
+            font-size:9px;
+            color:#808080;
+        }
+                
+        #bfg-foot > a {
+        	color: #808080;
+        }
+        
+    </style>
+</head>
+<body style="height: 100%;">
+    <div id="manywho">
+        <div id="loader" class="mw-bs" style="width: 100%; height: 100%;">
+            <div class="wait-container">
+                <div class="wait-spinner"></div>
+            </div>
+        </div>
+        <div id="bfg-foot">Powered by <a target="_blank" href="https://boomi.com/">Boomi</a></div>
+    </div>
+
+    <script src="https://assets.manywho.com/js/vendor/jquery-2.1.4.min.js"></script>
+
+    <script>
+        var manywho = {
+            cdnUrl: 'https://assets.manywho.com',
+            requires: ['core', 'bootstrap3'],
+            customResources:['https://files-manywho-com.s3.amazonaws.com/653b081b-13a6-4f0d-ae5d-ae2347606c31/ElapsedTimeFriendly.min.js'],
+            initialize: function () {
+
+                var queryParameters = manywho.utils.parseQueryString(window.location.search.substring(1));
+
+                manywho.settings.initialize({
+                    platform: {
+                        uri: '',
+                    },
+                    adminTenantId: 'da497693-4d02-45db-bc08-8ea16d2ccbdf',
+                    
+                    /* Disable scroll */
+                    isScrollResetEnabled: false,
+                    
+                    // (4) Define initialization message. Player setting reference: https://github.com/manywho/ui-html5/wiki/Settings
+                    localization: {
+                        initializing: 'Launching....',
+                    },
+
+                    // (6) Disable the 'progress on enter' feature 
+                    shortcuts: {
+                        progressOnEnter: false
+                    },
+
+                    //Back to the standard player settings
+                    playerUrl: [ location.protocol, '//', location.host, location.pathname ].join(''),
+                    joinUrl: [ location.protocol, '//', location.host, location.pathname ].join('')
+                });
+                
+                var uuid = queryParameters['uuid'];
+                var validation = queryParameters['v'];
+                var email = queryParameters['e'];
+                
+                var inputs = [];
+                
+                if (uuid!=null)
+                   inputs.push({ "uuid": uuid });
+                   
+                if (validation!=null)
+                   inputs.push({ "validation": validation });
+                   
+                if (email!=null)
+                   inputs.push({ "email": email });
+                   
+                var jsonInputs = manywho.json.generateFlowInputs(inputs);
+                
+                var options = {
+                    authentication: {
+                        sessionId: queryParameters['session-token'],
+                        sessionUrl: queryParameters['session-url']
+                    },
+                    navigationElementId: queryParameters['navigation-element-id'],
+                    mode: queryParameters['mode'],
+                    reportingMode: queryParameters['reporting-mode'],
+                    
+                    // (12) Allows a query parameter input to determine whether the browser Flow URL is replaced with a join-id
+                    replaceUrl: true,
+                    collaboration: {
+                        isEnabled: false
+                    },
+                    inputs: jsonInputs, //Changed from null, to use var declared on line 178
+                    
+                    // (13) Populates additional potentially useful data into the flow state
+                    annotations: {
+                        "org": uuid
+                    },
+                    navigation: {
+                        isFixed: true,
+                        isWizard: false
+                    },
+                    callbacks: [],
+                    // (14) Allows query parameter to define flow theme, with a default other than 'paper'
+                    theme: queryParameters['theme'] != null ? queryParameters['theme'] : 'yeti'
+                };
+
+                var tenantId = queryParameters['tenant-id'];
+                if (!tenantId) {
+                    tenantId =
+                        window.location.pathname
+                        .split('/')
+                        .filter(function (path) {
+                            return path && path.length > 0;
+                        })[0];
+                }
+                
+
+                manywho.engine.initialize(
+                    tenantId,
+                    queryParameters['flow-id'],
+                    queryParameters['flow-version-id'],
+                    'main',
+                    queryParameters['join'],
+                    queryParameters['authorization'],
+                    options,
+                    queryParameters['initialization']
+                );
+
+            }
+        };
+    </script>
+
+    <script src="https://assets.manywho.com/js/loader.min.js"></script>
+    
+    <!--(15) Adds custom style on top of flow theme style-->
+    <style>
+        .mw-bs .summary-tbl tr {
+            font-size: 25px;
+            /*background-color: #ebe5f5;*/
+          }
+    </style>
+</body>
+</html>
