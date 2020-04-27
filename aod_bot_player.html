@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" class="manywho" style="height: 100%;">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link id="theme" />
+    
+    <link rel="shortcut icon" href="https://assets.manywho.com/img/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="https://assets.manywho.com/img/favicon/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="https://assets.manywho.com/img/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https://assets.manywho.com/img/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="https://assets.manywho.com/img/favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="https://assets.manywho.com/img/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="https://assets.manywho.com/img/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https://assets.manywho.com/img/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="https://assets.manywho.com/img/favicon/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://assets.manywho.com/img/favicon/apple-touch-icon-180x180.png" />
+    <link rel="icon" sizes="192x192" href="https://assets.manywho.com/img/favicon/android-icon.png">
+    <meta name="msapplication-square310x310logo" content="https://assets.manywho.com/img/favicon/microsoft-310x310.png">
+    
+    <title>Boomi Flow Chatbot</title>
+
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background: #ffffff;
+        }
+        
+        #bfg-foot {
+            position:absolute;
+            bottom:0;
+            right:0;
+            z-index:999;
+            background-color:white;
+            font-family:sans-serif;
+            margin:5px;
+            font-size:8px;
+            color:#808080;
+        }
+    </style>
+</head>
+<body>
+    <div id="manywho">
+        <!--<div id="bfg-foot">Powered by <a target="_blank" href="https://boomi.com/">Boomi</a></div>-->
+    </div>
+
+    <script src="https://assets.manywho.com/js/vendor/jquery-2.1.4.min.js"></script>
+
+    <script>
+        var manywho = {
+            cdnUrl: 'https://assets.manywho.com',
+            // customResources: ['https://s3.amazonaws.com/bdk-flow-ui/chatbot.js', 'https://s3.amazonaws.com/bdk-flow-ui/chatbot.css'],
+            customResources: [
+                'https://files-manywho-com.s3.amazonaws.com/d3eeb8b1-6c28-4769-a551-569d8302c4d9/chatbot.js', 
+                'https://files-manywho-com.s3.amazonaws.com/d3eeb8b1-6c28-4769-a551-569d8302c4d9/chatbot.css'
+                ],
+            // requires: ['core'],
+            // Un-comment the following line to load the standard UI components, useful if you need to display Steps or other Pages
+            requires: ['core', 'bootstrap3'],
+            initialize: function () {
+
+                var queryParameters = manywho.utils.parseQueryString(window.location.search.substring(1));
+
+                manywho.isEmbedded = queryParameters['isEmbedded'];
+
+                manywho.settings.initialize({
+                    adminTenantId: 'da497693-4d02-45db-bc08-8ea16d2ccbdf',
+                    playerUrl: [ location.protocol, '//', location.host, location.pathname ].join(''),
+                    joinUrl: [ location.protocol, '//', location.host, location.pathname ].join('')
+                });
+                
+                var uuid = queryParameters['uuid'];
+                
+                var inputs = [];
+                
+                if (uuid!=null)
+                   inputs.push({ "uuid": uuid });
+                   
+                var jsonInputs = manywho.json.generateFlowInputs(inputs);
+
+                var options = {
+                    authentication: {
+                        sessionId: queryParameters['session-token'],
+                        sessionUrl: queryParameters['session-url']
+                    },
+                    navigationElementId: queryParameters['navigation-element-id'],
+                    mode: queryParameters['mode'],
+                    reportingMode: queryParameters['reporting-mode'],
+                    replaceUrl: true,
+                    collaboration: {
+                        isEnabled: false
+                    },
+                    inputs: jsonInputs,
+                    annotations: null,
+                    navigation: {
+                        isFixed: true,
+                        isWizard: false
+                    },
+                    callbacks: [],
+                    theme: queryParameters['theme']
+                };
+
+                var tenantId = queryParameters['tenant-id'];
+                if (!tenantId) {
+                    tenantId = window.location.pathname
+                                .split('/')
+                                .filter(function (path) {
+                                    return path && path.length > 0;
+                                })[0];
+                }
+
+                manywho.engine.initialize(
+                    tenantId,
+                    queryParameters['flow-id'],
+                    queryParameters['flow-version-id'],
+                    'main',
+                    queryParameters['join'],
+                    queryParameters['authorization'],
+                    options,
+                    queryParameters['initialization']
+                )
+                .always(function() {
+                    if (manywho.isEmbedded)
+                        window.parent.postMessage('loaded', '*');
+                })
+
+            }
+        };
+    </script>
+
+    <script src="https://assets.manywho.com/js/loader.min.js"></script>
+    <style>
+    /*******Bot message style*******/
+    #manywho .message.d-bot>.content {
+        color:#033D58;
+        background-color:#FF7C66;
+        /*font-size: 16pt;*/
+    }
+    
+    /*Bot message top-left carrot*/
+    #manywho .message.d-bot .content:before {
+        content: "";
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        border-left: 0.5rem solid transparent;
+        border-right: .5rem solid #FF7C66;
+        border-top: .5rem solid #FF7C66;
+        border-bottom: 0.5rem solid transparent;
+        left: -0.5rem;
+        top: 0px;
+
+    }
+    
+    /*Bot message links*/
+    /*#manywho .message>.content>a {*/
+    /*text-decoration: underline;*/
+    /*font-weight: bold;*/
+    /*font-size: 16pt;*/
+    /*color:#FEDB00;*/
+    /*color:#FF7C66;*/
+    /*}*/
+    
+    /*******User message style*******/
+    /*#manywho .message.chat-user>.content {*/
+        /*background-color:#033D58;*/
+        /*color:#EEEEEE;*/
+    /*    font-size: 16pt;*/
+    /*}*/
+
+    </style>
+</body>
+</html>
