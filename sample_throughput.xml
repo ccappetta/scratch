@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:QueryResult xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bns="http://api.platform.boomi.com/" numberOfResults="12">
+    <bns:result xsi:type="bns:ThroughputAccount" value="168193416" atomId="71070124-bcfe-4967-86bd-298d49ae683d" accountId="boomipresalesprebuiltsolu-4FNPO3" date="2020-07-30"/>
+    <bns:result xsi:type="bns:ThroughputAccount" value="0" atomId="d4b1263d-2d88-40d4-a4d6-fd6576a2f3b5" accountId="boomipresalesprebuiltsolu-4FNPO3" date="2020-07-30"/>
+    <bns:result xsi:type="bns:ThroughputAccount" value="0" atomId="64b5dca8-28ba-4892-91e7-cbb34097005f" accountId="boomipresalesprebuiltsolu-4FNPO3" date="2020-07-30"/>
+    <bns:result xsi:type="bns:ThroughputAccount" value="3568338409" atomId="b31f188f-58a3-4e20-a496-9862f0740839" accountId="boomipresalesprebuiltsolu-4FNPO3" date="2020-07-30"/>
+    <bns:result xsi:type="bns:ThroughputAccount" value="0" atomId="51643d93-83ec-45fb-a5d3-ff38a7cd121a" accountId="boomipresalesprebuiltsolu-4FNPO3" date="2020-07-30"/>
+    <bns:result xsi:type="bns:ThroughputAccount" value="0" atomId="1313932f-ac60-4395-9c89-94a6b1ecbd98" accountId="boomipresalesprebuiltsolu-4FNPO3" date="2020-07-30"/>
+    <bns:result xsi:type="bns:ThroughputAccount" value="9835412" atomId="61f00edc-0bec-4e1b-834f-68478f6f1130" accountId="boomipresalesprebuiltsolu-4FNPO3" date="2020-07-30"/>
+    <bns:result xsi:type="bns:ThroughputAccount" value="0" atomId="2835703d-32c1-4401-879a-613dae998812" accountId="boomipresalesprebuiltsolu-4FNPO3" date="2020-07-30"/>
+    <bns:result xsi:type="bns:ThroughputAccount" value="79181" atomId="952d1b57-b51c-47fb-9469-9265cc0ca745" accountId="boomipresalesprebuiltsolu-4FNPO3" date="2020-07-30"/>
+    <bns:result xsi:type="bns:ThroughputAccount" value="0" atomId="6f3e47fa-ddac-4623-ada6-7299b40b6c4e" accountId="boomipresalesprebuiltsolu-4FNPO3" date="2020-07-30"/>
+    <bns:result xsi:type="bns:ThroughputAccount" value="0" atomId="21e582d0-3e76-4585-9674-3f6134306ace" accountId="boomipresalesprebuiltsolu-4FNPO3" date="2020-07-30"/>
+    <bns:result xsi:type="bns:ThroughputAccount" value="0" atomId="28367c69-95c5-4dd3-9ef9-fa2d09c6f76d" accountId="boomipresalesprebuiltsolu-4FNPO3" date="2020-07-30"/>
+</bns:QueryResult>
