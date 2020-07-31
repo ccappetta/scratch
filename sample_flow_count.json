@@ -1,0 +1,65 @@
+{
+  "_links": {
+    "previous": null,
+    "next": "/api/admin/1/states/flow?page=2&amp;pageSize=10",
+    "first": "/api/admin/1/states/flow?page=1&amp;pageSize=10",
+    "last": "/api/admin/1/states/flow?page=2&amp;pageSize=10"
+  },
+  "_meta": {
+    "total": 12,
+    "pageSize": 10,
+    "page": 1
+  },
+  "items": [
+    {
+      "count": 153,
+      "developerName": "Activity stream",
+      "id": "05ea3cbd-a4b1-4d9f-ad90-a231b56f6a09"
+    },
+    {
+      "count": 177,
+      "developerName": "Admin Insights Dash",
+      "id": "5185070a-1c88-4570-ba42-400431f515ce"
+    },
+    {
+      "count": 40,
+      "developerName": "Allocation Dash",
+      "id": "e048da14-2a79-4e07-8172-78d97dac1ca2"
+    },
+    {
+      "count": 173,
+      "developerName": "Choose Theme",
+      "id": "45aa7df2-7cbb-466e-9f40-d3f35462d3a7"
+    },
+    {
+      "count": 551,
+      "developerName": "Comments",
+      "id": "512f3b1d-c387-4a2b-9eb9-fd37ac57f61c"
+    },
+    {
+      "count": 2386,
+      "developerName": "Create Task",
+      "id": "e033e69f-156a-4067-8337-30abc994ced6"
+    },
+    {
+      "count": 15,
+      "developerName": "Dynamic Authors Page",
+      "id": "ba33f29c-5385-4321-84c9-617489cb13b3"
+    },
+    {
+      "count": 129,
+      "developerName": "Insights Flow",
+      "id": "721e0a3c-3eb0-4a5d-b5b2-7a792f25433f"
+    },
+    {
+      "count": 248,
+      "developerName": "Project Dash",
+      "id": "ca06f089-80ef-4e3c-8b15-cc1329eb3004"
+    },
+    {
+      "count": 2625,
+      "developerName": "Taskr Home",
+      "id": "a6dcfc12-69f7-4a59-91cf-5fae3008e4b2"
+    }
+  ]
+}
